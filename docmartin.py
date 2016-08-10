@@ -9,7 +9,8 @@ import re
 
 class Markdown:
     
-    def __init__(self, main_module, public_only, *modules):
+    def __init__(self, main_title, main_module, public_only, *modules):
+        self.main_title = main_title
         self.main_module = main_module
         self.public_only = public_only
         self.modules = modules
@@ -18,7 +19,7 @@ class Markdown:
     def write(self):
         with open('README.md', 'w') as f:
             self.f = f
-            self.title(1, "Social network of movie characters")
+            self.title(1, self.main_title)
             self.paragraph(self.main_module.__doc__)
             for module in self.modules:
                 self.doc(f, module)
